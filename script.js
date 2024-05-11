@@ -7,14 +7,14 @@ const inputs = document.querySelectorAll('.controls input');
 
     inputs.forEach(input => input.addEventListener('change', handleUpdate));
     inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
-const player = document.querySelector('.player');
+const player = document.querySelector('.flex');
 const progress = document.querySelector('.progress');
-const progressBar = document.querySelector('.progress__filled');
+const progressBar = document.querySelector('.speed-bar');
 const playerButton = document.querySelector('.player__button');
 const volumeSlider = document.querySelector('input[name="volume"]');
 const playbackRateSlider = document.querySelector('input[name="playbackRate"]');
-const skipButtons = document.querySelectorAll('[data-skip]');
-const speedBar = document.querySelector('.speed-bar');
+const skipButtons = document.querySelectorAll('.player__button[data-skip]');
+const progressFilled = document.querySelector('.progress__filled');
 
 function togglePlay() {
   if (player.paused) {
@@ -28,7 +28,7 @@ function togglePlay() {
 
 function handleProgress() {
   const percent = (player.currentTime / player.duration) * 100;
-  progressBar.style.flexBasis = `${percent}%`;
+  progressFilled.style.flexBasis = `${percent}%`;
 }
 
 function scrub(e) {
@@ -42,7 +42,7 @@ function handleVolume() {
 
 function handlePlaybackRate() {
   player.playbackRate = playbackRateSlider.value;
-  speedBar.textContent = `${player.playbackRate.toFixed(1)}×`;
+  progressBar.textContent = `${player.playbackRate.toFixed(1)}×`;
 }
 
 function skip() {
